@@ -10,7 +10,7 @@
 #define PIN_MISO    16
 #define PIN_CS      17
 #define PIN_SCK     18
-#define PIN_MOSI    19
+#define PIN_MOSI    20
 
 #define SPI_BAUDRATE    1000000   // 1 MHz
 
