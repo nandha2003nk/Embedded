@@ -1,13 +1,15 @@
-#include <stdio.h>
 #include "pico/stdlib.h"
 
+#include "app.h"
 
-int main()
+int main(void)
 {
-    stdio_init_all();
+    app_init();
 
-    while (true) {
-        printf("Hello, world!\n");
-        sleep_ms(1000);
+    while (true)
+    {
+        app_run();
     }
+
+    return 0;
 }
