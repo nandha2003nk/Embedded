@@ -35,7 +35,9 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Motor_controller main.c )
+add_executable(Motor_controller main.c  
+        app/application.c 
+        app/state_machine.c  )
 
 pico_set_program_name(Motor_controller "Motor_controller")
 pico_set_program_version(Motor_controller "0.1")
@@ -51,6 +53,10 @@ target_link_libraries(Motor_controller
 # Add the standard include files to the build
 target_include_directories(Motor_controller PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/app
+        ${CMAKE_CURRENT_LIST_DIR}/drivers
+        ${CMAKE_CURRENT_LIST_DIR}/middleware
+        ${CMAKE_CURRENT_LIST_DIR}/config
 )
 
 pico_add_extra_outputs(Motor_controller)

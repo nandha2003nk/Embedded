@@ -10,15 +10,6 @@ typedef enum
 
 } system_state_t;
 
-typedef enum
-{
-    EVENT_NONE,
-    EVENT_START,
-    EVENT_STOP,
-    EVENT_FAULT,
-    EVENT_RESET
-
-} system_event_t;
 
 void state_machine_init(void);
 

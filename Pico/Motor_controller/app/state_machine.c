@@ -1,5 +1,7 @@
 #include "state_machine.h"
 
+#include "common/types.h"   
+
 
 static system_state_t current_state;
 
