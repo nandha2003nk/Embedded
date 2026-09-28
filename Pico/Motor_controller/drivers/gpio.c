@@ -1,9 +1,12 @@
-#include "gpio_driver.h"
+#include "gpio.h"
 #include "hardware/gpio.h"
 
 #define GPIO_DRIVER_MAX_PINS 30
 
-static gpio_irq_callback_t gpio_callbacks[GPIO_DRIVER_MAX_PINS] = {0};
+static gpio_driver_irq_callback_t gpio_callbacks[GPIO_DRIVER_MAX_PINS] = {0};
+
+
+/* Interrupt handler used internally by our driver */
 
 static void gpio_driver_irq_handler(uint gpio, uint32_t events)
 {
@@ -17,6 +20,9 @@ static void gpio_driver_irq_handler(uint gpio, uint32_t events)
         gpio_callbacks[gpio]((uint8_t)gpio, events);
     }
 }
+
+
+/* Initialize GPIO */
 
 bool gpio_driver_init(uint8_t pin, gpio_mode_t mode)
 {
@@ -55,6 +61,9 @@ bool gpio_driver_init(uint8_t pin, gpio_mode_t mode)
     return true;
 }
 
+
+/* Write GPIO state */
+
 bool gpio_driver_write(uint8_t pin, gpio_state_t state)
 {
     if (pin >= GPIO_DRIVER_MAX_PINS)
@@ -66,6 +75,9 @@ bool gpio_driver_write(uint8_t pin, gpio_state_t state)
 
     return true;
 }
+
+
+/* Read GPIO state */
 
 gpio_state_t gpio_driver_read(uint8_t pin)
 {
@@ -82,6 +94,9 @@ gpio_state_t gpio_driver_read(uint8_t pin)
     return GPIO_LOW;
 }
 
+
+/* Toggle GPIO state */
+
 bool gpio_driver_toggle(uint8_t pin)
 {
     if (pin >= GPIO_DRIVER_MAX_PINS)
@@ -94,9 +109,12 @@ bool gpio_driver_toggle(uint8_t pin)
     return true;
 }
 
+
+/* Configure GPIO interrupt */
+
 bool gpio_driver_set_irq(uint8_t pin,
                          gpio_irq_event_t events,
-                         gpio_irq_callback_t callback)
+                         gpio_driver_irq_callback_t callback)
 {
     if (pin >= GPIO_DRIVER_MAX_PINS)
     {

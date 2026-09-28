@@ -1,12 +1,16 @@
 #ifndef STATE_MACHINE_H
 #define STATE_MACHINE_H
 
+#include "common/types.h"
+
 typedef enum
 {
     STATE_INIT,
     STATE_IDLE,
     STATE_RUNNING,
     STATE_FAULT
+
+    #
 
 } system_state_t;
 

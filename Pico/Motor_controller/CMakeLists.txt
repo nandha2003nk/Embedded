@@ -38,7 +38,11 @@ pico_sdk_init()
 add_executable(Motor_controller main.c  
         app/application.c 
         app/state_machine.c 
-        middleware/fault_manager.c )
+        middleware/fault_manager.c
+        drivers/as5600.c
+        drivers/ds18b20.c
+        drivers/ina219.c
+        drivers/gpio.c )
 
 pico_set_program_name(Motor_controller "Motor_controller")
 pico_set_program_version(Motor_controller "0.1")
@@ -49,7 +53,9 @@ pico_enable_stdio_usb(Motor_controller 0)
 
 # Add the standard library to the build
 target_link_libraries(Motor_controller
-        pico_stdlib)
+        pico_stdlib
+        hardware_i2c
+        hardware_gpio)
 
 # Add the standard include files to the build
 target_include_directories(Motor_controller PRIVATE

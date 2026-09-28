@@ -25,8 +25,14 @@ typedef enum
     GPIO_IRQ_BOTH = 0x0C
 } gpio_irq_event_t;
 
-typedef void (*gpio_irq_callback_t)(uint8_t pin,
-                                    uint32_t events);
+/*
+ * Our driver's interrupt callback type.
+ *
+ * This has a different name from the Pico SDK's
+ * gpio_irq_callback_t.
+ */
+typedef void (*gpio_driver_irq_callback_t)(uint8_t pin,
+                                           uint32_t events);
 
 bool gpio_driver_init(uint8_t pin,
                       gpio_mode_t mode);
@@ -40,6 +46,6 @@ bool gpio_driver_toggle(uint8_t pin);
 
 bool gpio_driver_set_irq(uint8_t pin,
                          gpio_irq_event_t events,
-                         gpio_irq_callback_t callback);
+                         gpio_driver_irq_callback_t callback);
 
 #endif
