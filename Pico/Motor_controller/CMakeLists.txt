@@ -37,7 +37,8 @@ pico_sdk_init()
 
 add_executable(Motor_controller main.c  
         app/application.c 
-        app/state_machine.c  )
+        app/state_machine.c 
+        middleware/fault_manager.c )
 
 pico_set_program_name(Motor_controller "Motor_controller")
 pico_set_program_version(Motor_controller "0.1")

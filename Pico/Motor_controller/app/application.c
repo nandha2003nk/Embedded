@@ -51,4 +51,4 @@ void application_update(void)
             state_machine_process_event(EVENT_STOP);
         }
     }
-}
+} 
