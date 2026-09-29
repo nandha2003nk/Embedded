@@ -15,10 +15,18 @@ static void gpio_driver_irq_handler(uint gpio, uint32_t events)
         return;
     }
 
-    if (gpio_callbacks[gpio] != NULL)
+    gpio_driver_irq_callback_t callback =
+        gpio_callbacks[gpio];
+
+    if (callback == NULL)
     {
-        gpio_callbacks[gpio]((uint8_t)gpio, events);
+        return;
     }
+
+    callback(
+        (uint8_t)gpio,
+        events
+    );
 }
 
 

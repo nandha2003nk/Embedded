@@ -39,6 +39,8 @@ add_executable(Motor_controller main.c
         app/application.c 
         app/state_machine.c 
         middleware/fault_manager.c
+        middleware/debounce.c
+        middleware/scheduler.c
         drivers/as5600.c
         drivers/ds18b20.c
         drivers/ina219.c
